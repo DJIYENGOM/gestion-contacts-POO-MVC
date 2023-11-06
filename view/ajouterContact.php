@@ -1,3 +1,10 @@
+<?php
+session_start();   
+if (!empty( $_SESSION['info'])){
+
+    $id_user = $_SESSION['info'][0];}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,12 +12,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ajouter un contact</title>
   <style>
-    /* style.css */
+       header { 
+    background-color:  #007BFF;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 24px;
+    margin-top:0 ;
+   
+}
     body {
       font-family: Arial, sans-serif;
       background: #f5f5f5; /* Couleur de fond plus claire */
       margin: 0;
-      display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
@@ -22,7 +36,8 @@
       border-radius: 10px;
       width: 400px;
       text-align: center;
-      margin: 20px; /* Ajoute de la marge autour du formulaire */
+      margin-left: 30%; 
+      margin-top: 5%; 
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Ombre légère */
     }
 
@@ -104,8 +119,12 @@
   </style>
 </head>
 <body>
+            <header>
+                Ajouter contact <h6><i><?= $_SESSION['info'][1]?></i></h6>
+            </header>
+            
   <div class="wrapper">
-    <form action="../controller/traitementAjout.php" method="post">
+    <form action="../controller/traitement.php" method="post">
       <h2>Ajouter un contact</h2>
 
       <div class="input-field">
