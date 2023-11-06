@@ -1,8 +1,15 @@
 <?php
+
+session_start();   
+if (!empty( $_SESSION['info'])){
+
+    $id_user = $_SESSION['info'][0];}
+    
+
 include_once("../model/Contact.php");
 
 // Récupérer la liste des numéros depuis la base de données
-$contacts = Contact::getAllContacts($var);
+$contacts = Contact::getAllContacts($var, $id_user);
 
 ?>
 
@@ -11,8 +18,16 @@ $contacts = Contact::getAllContacts($var);
 <head>
 </head>
 <body>
-    
 <style>
+    header { 
+    background-color:  #007BFF;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 24px;
+    margin-top:0 ;
+   
+}
  
 table {
     border-collapse: collapse;
@@ -60,7 +75,11 @@ td .btn-modifier {
 }
 
 </style>
-    <h1>Liste des Contacts</h1>
+            <header>
+                Tous les contacts <h6><i><?= $_SESSION['info'][1]?></i></h6>
+            </header>
+            <br><br><br>
+
     <table>
         <tr>
             <th>ID</th>
@@ -78,12 +97,16 @@ td .btn-modifier {
                 <td><?php echo $contact['numero']; ?></td>
                 <td><?php echo $contact['favori']; ?></td>
                 <td>
-                    <a href="modifierContact.php?id=<?php echo $contact['id_contact']; ?>"><button class="btn-modifier">Modifier</button></a>  
-                    <a href="../controller/traitementSuppression.php ?id=<?php echo $contact['id_contact']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce contact ?')"><button class="btn-supprimer">Supprimer</button></a>
+                    <?php $id=$contact['id_contact']*0.2?>
+
+                    <a href="modifierContact.php?id=<?php echo  $id; ?>"><button class="btn-modifier">Modifier</button></a>  
+                    <a href="../controller/traitement.php ?id=<?php echo  $id; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce contact ?')"><button class="btn-supprimer">Supprimer</button></a>
                 
                 </td>
             </tr>
         <?php endforeach; ?>
+        <td colspan="6"><a href="ajouterContact.php">Ajouter contact</a> </td>
     </table>
+
 </body>
 </html>
