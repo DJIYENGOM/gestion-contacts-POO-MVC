@@ -14,7 +14,7 @@
         <div class="form">
 
             <h2>Création de compte</h2>
-            <form action="controleur/inscription.php" method="post">
+            <form action="../controller/traitement_user.php" method="post">
                 <div class="form-group">
                     <label for="nom">Nom d'utilisateur:</label>
                     <input type="text" id="nom" name="nom">
@@ -43,7 +43,7 @@
 
         <div class="form">
             <h2>Connexion</h2>
-            <form action="controleur/connexion.php" method="post">
+            <form action="../controller/traitement_user.php" method="post">
                 <div class="form-group">
                     <label for="emailConnexion">Email</label>
                     <input type="email" id="emailConnexion" name="email">
@@ -62,3 +62,6 @@
     </div>
 </body>
 </html>
+<?php 
+
+    ?>
