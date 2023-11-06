@@ -2,7 +2,7 @@
 include_once("../model/Contact.php");
 // Vérifiez si l'ID du contact est défini dans l'URL
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $id = $_GET['id']/0.2;
     $contact = Contact::getContactById($var, $id);
 }
 
@@ -83,8 +83,9 @@ p {
 <h1>Modifier un Contact</h1>
 
 <?php if (isset($contact)) : ?>
-    <form method="post" action="../controller/traitementModification.php">
-            <input type="hidden" name="id" value="<?php echo $contact->getId(); ?>">
+    <form method="post" action="../controller/traitement.php">
+        <input type="hidden" name="id" value="<?php echo $contact->getId(); ?>">
+
         <label for="prenom">Prénom:</label>
         <input type="text" name="prenom" value="<?php echo $contact->getPrenom(); ?>"><br>
 
